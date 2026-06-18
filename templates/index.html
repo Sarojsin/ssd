@@ -1,0 +1,32 @@
+{% extends "base.html" %}
+
+{% block title %}Home - Women's Health Survey{% endblock %}
+
+{% block content %}
+<section class="hero">
+    <h2>Welcome to Our Research Study</h2>
+    <p>We are conducting a study to understand the needs of women's health and wellness. Your participation will help us design a better app.</p>
+</section>
+
+<section class="roles">
+    <h3>Select Your Role</h3>
+    <div class="role-cards">
+        <a href="/survey/nurse" class="role-card">
+            <h4>Nurse</h4>
+            <p>Clinic/Field Perspective</p>
+        </a>
+        <a href="/survey/doctor" class="role-card">
+            <h4>Doctor</h4>
+            <p>Specialist Perspective</p>
+        </a>
+        <a href="/survey/women18plus" class="role-card">
+            <h4>Women 18+</h4>
+            <p>User Experience</p>
+        </a>
+        <a href="/survey/under18" class="role-card">
+            <h4>Under 18</h4>
+            <p>Early Education</p>
+        </a>
+    </div>
+</section>
+{% endblock %}

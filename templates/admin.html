@@ -1,0 +1,28 @@
+{% extends "base.html" %}
+
+{% block title %}Admin - Survey Responses{% endblock %}
+
+{% block content %}
+<div class="admin-header">
+    <h2>Survey Responses</h2>
+    <p>Total responses: {{ data|length }}</p>
+</div>
+
+{% for item in data %}
+<div class="response-card">
+    <div class="response-meta">
+        <span>ID: {{ item.id }}</span>
+        <span>Role: {{ item.role|capitalize }}</span>
+        <span>{{ item.created_at }}</span>
+    </div>
+    <div class="response-answers">
+        {% for q, a in item.responses %}
+        <div class="answer-row">
+            <strong>Q{{ loop.index }}:</strong> {{ q }}
+            <p>Answer: {{ a }}</p>
+        </div>
+        {% endfor %}
+    </div>
+</div>
+{% endfor %}
+{% endblock %}

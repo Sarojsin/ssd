@@ -1,0 +1,43 @@
+{% extends "base.html" %}
+
+{% block title %}{{ role|capitalize }} Survey{% endblock %}
+
+{% block content %}
+<div class="survey-header">
+    <h2>{{ role|capitalize }} Survey</h2>
+    <p>Please answer all questions honestly. Your responses are anonymous.</p>
+</div>
+
+<form method="POST" action="/submit/{{ role }}">
+    {% for q in questions %}
+    <div class="question-card">
+        <p class="question-text">{{ loop.index }}. {{ q.text }}</p>
+        {% if q.description %}
+        <p class="question-description">{{ q.description }}</p>
+        {% endif %}
+
+        {% if q.type == "radio" %}
+            {% for opt in q.options %}
+            <label class="option-label">
+                <input type="radio" name="q{{ loop.index0 }}" value="{{ opt }}">
+                <span>{{ opt }}</span>
+            </label>
+            {% endfor %}
+
+        {% elif q.type == "checkbox" %}
+            {% for opt in q.options %}
+            <label class="option-label">
+                <input type="checkbox" name="q{{ loop.index0 }}" value="{{ opt }}">
+                <span>{{ opt }}</span>
+            </label>
+            {% endfor %}
+
+        {% elif q.type == "text" %}
+        <textarea name="q{{ loop.index0 }}" rows="3" placeholder="Your answer..."></textarea>
+        {% endif %}
+    </div>
+    {% endfor %}
+
+    <button type="submit" class="submit-btn">Submit Survey</button>
+</form>
+{% endblock %}
