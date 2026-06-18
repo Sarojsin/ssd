@@ -40,4 +40,16 @@
 
     <button type="submit" class="submit-btn">Submit Survey</button>
 </form>
+<script>
+document.querySelectorAll('input[type="radio"]').forEach(r => {
+    r.addEventListener('click', (e) => {
+        if (r.checked && r.dataset.prevChecked === 'true') {
+            r.checked = false;
+            r.dataset.prevChecked = 'false';
+        } else {
+            r.dataset.prevChecked = 'true';
+        }
+    });
+});
+</script>
 {% endblock %}
