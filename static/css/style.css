@@ -109,6 +109,18 @@ textarea {
     resize: vertical;
 }
 
+input[type="text"],
+input[type="number"],
+input[type="date"] {
+    width: 100%;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    padding: 0.75rem;
+    font-family: inherit;
+    font-size: 1rem;
+    margin-top: 0.5rem;
+}
+
 .submit-btn {
     display: inline-block;
     background: var(--primary);
@@ -123,6 +135,61 @@ textarea {
 }
 
 .submit-btn:hover { background: var(--primary-dark); }
+
+.add-history-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    background: #fff;
+    color: var(--primary);
+    border: 2px dashed var(--primary);
+    padding: 0.75rem 1.5rem;
+    border-radius: 30px;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: all 0.2s;
+    margin-top: 1rem;
+}
+
+.add-history-btn:hover {
+    background: var(--bg);
+    border-color: var(--primary-dark);
+    color: var(--primary-dark);
+}
+
+.history-info {
+    background: #fff3e0;
+    border-left: 4px solid #ff9800;
+    padding: 1rem;
+    border-radius: 8px;
+    margin: 1rem 0;
+    font-size: 0.95rem;
+    color: #555;
+}
+
+.history-info strong {
+    color: var(--primary-dark);
+}
+
+.past-cycle-card {
+    border: 1px solid #e0e0e0;
+    background: #fafafa;
+}
+
+.remove-btn {
+    background: #ff5252;
+    color: #fff;
+    border: none;
+    padding: 0.5rem 1rem;
+    border-radius: 20px;
+    cursor: pointer;
+    font-size: 0.9rem;
+    margin-top: 0.5rem;
+}
+
+.remove-btn:hover {
+    background: #d32f2f;
+}
 
 .thank-you {
     text-align: center;

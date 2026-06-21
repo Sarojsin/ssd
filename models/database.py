@@ -32,6 +32,35 @@ class Response(Base):
     survey = relationship("Survey", back_populates="responses")
 
 
+class PersonalHealthData(Base):
+    __tablename__ = "personal_health_data"
+    id = Column(Integer, primary_key=True, index=True)
+    age = Column(Integer, nullable=True)
+    height = Column(String(20), nullable=True)
+    weight = Column(String(20), nullable=True)
+    stress_level = Column(String(50), nullable=True)
+    exercise_frequency = Column(String(50), nullable=True)
+    sleep_hours = Column(String(20), nullable=True)
+    diet = Column(String(50), nullable=True)
+    cycle_start_date = Column(String(50), nullable=True)
+    cycle_length = Column(Integer, nullable=True)
+    period_length = Column(Integer, nullable=True)
+    symptoms = Column(Text, nullable=True)
+    created_at = Column(DateTime, default=datetime.utcnow)
+    cycle_histories = relationship("CycleHistory", back_populates="personal_health", cascade="all, delete-orphan")
+
+
+class CycleHistory(Base):
+    __tablename__ = "cycle_history"
+    id = Column(Integer, primary_key=True, index=True)
+    personal_health_id = Column(Integer, ForeignKey("personal_health_data.id"), nullable=False)
+    cycle_start_date = Column(String(50), nullable=True)
+    cycle_length = Column(Integer, nullable=True)
+    period_length = Column(Integer, nullable=True)
+    symptoms = Column(Text, nullable=True)
+    personal_health = relationship("PersonalHealthData", back_populates="cycle_histories")
+
+
 def init_db():
     Base.metadata.create_all(bind=engine)
 

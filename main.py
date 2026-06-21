@@ -3,7 +3,7 @@ from fastapi.responses import HTMLResponse, RedirectResponse
 from fastapi.templating import Jinja2Templates
 from fastapi.staticfiles import StaticFiles
 from sqlalchemy.orm import Session
-from models.database import get_db, Survey, Response
+from models.database import get_db, Survey, Response, PersonalHealthData, CycleHistory
 import json
 import os
 from dotenv import load_dotenv
@@ -137,6 +137,49 @@ async def submit(request: Request, role: str, db: Session = Depends(get_db)):
 @app.get("/thank-you", response_class=HTMLResponse)
 async def thank_you(request: Request):
     return templates.TemplateResponse("thank_you.html", {"request": request})
+
+
+@app.get("/personal-health", response_class=HTMLResponse)
+async def personal_health_form(request: Request):
+    return templates.TemplateResponse("personal_health.html", {"request": request})
+
+
+@app.post("/personal-health", response_class=HTMLResponse)
+async def submit_personal_health(request: Request, db: Session = Depends(get_db)):
+    form = await request.form()
+    symptoms = form.getlist("symptoms")
+    record = PersonalHealthData(
+        age=int(form["age"]) if form.get("age") else None,
+        height=form.get("height"),
+        weight=form.get("weight"),
+        stress_level=form.get("stress_level"),
+        exercise_frequency=form.get("exercise_frequency"),
+        sleep_hours=form.get("sleep_hours"),
+        diet=form.get("diet"),
+        cycle_start_date=form.get("cycle_start_date"),
+        cycle_length=int(form["cycle_length"]) if form.get("cycle_length") else None,
+        period_length=int(form["period_length"]) if form.get("period_length") else None,
+        symptoms=json.dumps(symptoms) if symptoms else None,
+    )
+    db.add(record)
+    db.commit()
+    db.refresh(record)
+
+    past_dates = form.getlist("past_cycle_start_date")
+    past_lengths = form.getlist("past_cycle_length")
+    past_periods = form.getlist("past_period_length")
+
+    for i in range(len(past_dates)):
+        past_symptoms = form.getlist(f"past_symptoms_{i}")
+        db.add(CycleHistory(
+            personal_health_id=record.id,
+            cycle_start_date=past_dates[i] if i < len(past_dates) else None,
+            cycle_length=int(past_lengths[i]) if i < len(past_lengths) and past_lengths[i] else None,
+            period_length=int(past_periods[i]) if i < len(past_periods) and past_periods[i] else None,
+            symptoms=json.dumps(past_symptoms) if past_symptoms else None,
+        ))
+    db.commit()
+    return RedirectResponse(url="/thank-you", status_code=303)
 
 
 @app.get("/admin", response_class=HTMLResponse)

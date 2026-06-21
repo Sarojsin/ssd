@@ -1,0 +1,140 @@
+{% extends "base.html" %}
+
+{% block title %}Personal Health - Women's Health Survey{% endblock %}
+
+{% block content %}
+<div class="survey-header">
+    <h2>Personal Health Information</h2>
+    <p>Please share your personal health details. All information is confidential.</p>
+</div>
+
+<form method="POST" action="/personal-health" id="personalHealthForm">
+    <div class="question-card">
+        <p class="question-text">Age</p>
+        <input type="number" name="age" min="10" max="100" placeholder="Your age" required>
+    </div>
+
+    <div class="question-card">
+        <p class="question-text">Height</p>
+        <input type="text" name="height" placeholder="e.g., 5.2 feet or 5'2" required>
+    </div>
+
+    <div class="question-card">
+        <p class="question-text">Weight</p>
+        <input type="text" name="weight" placeholder="e.g., 60 kg or 132 lbs">
+    </div>
+
+    <div class="question-card">
+        <p class="question-text">Stress Level (for whole month)</p>
+        <label class="option-label"><input type="radio" name="stress_level" value="Low" required> <span>Low</span></label>
+        <label class="option-label"><input type="radio" name="stress_level" value="Moderate"> <span>Moderate</span></label>
+        <label class="option-label"><input type="radio" name="stress_level" value="High"> <span>High</span></label>
+    </div>
+
+    <div class="question-card">
+        <p class="question-text">Exercise Frequency</p>
+        <label class="option-label"><input type="radio" name="exercise_frequency" value="High" required> <span>High</span></label>
+        <label class="option-label"><input type="radio" name="exercise_frequency" value="Moderate"> <span>Moderate</span></label>
+        <label class="option-label"><input type="radio" name="exercise_frequency" value="Low"> <span>Low</span></label>
+    </div>
+
+    <div class="question-card">
+        <p class="question-text">Sleep Hours</p>
+        <input type="text" name="sleep_hours" placeholder="e.g., 7-8 hours or 7.5" required>
+    </div>
+
+    <div class="question-card">
+        <p class="question-text">Diet</p>
+        <label class="option-label"><input type="radio" name="diet" value="Balanced" required> <span>Balanced</span></label>
+        <label class="option-label"><input type="radio" name="diet" value="Normal"> <span>Normal</span></label>
+        <label class="option-label"><input type="radio" name="diet" value="Junk"> <span>Junk</span></label>
+    </div>
+
+    <div class="question-card">
+        <p class="question-text">Current Cycle Start Date</p>
+        <input type="date" name="cycle_start_date" required>
+    </div>
+
+    <div class="question-card">
+        <p class="question-text">Current Cycle Length (days until next cycle)</p>
+        <input type="number" name="cycle_length" min="1" max="60" placeholder="e.g., 28" required>
+    </div>
+
+    <div class="question-card">
+        <p class="question-text">Current Period Length (days)</p>
+        <input type="number" name="period_length" min="1" max="15" placeholder="e.g., 5" required>
+    </div>
+
+    <div class="question-card">
+        <p class="question-text">Current Symptoms (select all that apply)</p>
+        <label class="option-label"><input type="checkbox" name="symptoms" value="Headache"> <span>Headache</span></label>
+        <label class="option-label"><input type="checkbox" name="symptoms" value="Cramps"> <span>Cramps</span></label>
+        <label class="option-label"><input type="checkbox" name="symptoms" value="Fatigue"> <span>Fatigue</span></label>
+        <label class="option-label"><input type="checkbox" name="symptoms" value="Bloating"> <span>Bloating</span></label>
+        <label class="option-label"><input type="checkbox" name="symptoms" value="Mood Swings"> <span>Mood Swings</span></label>
+        <label class="option-label"><input type="checkbox" name="symptoms" value="Acne"> <span>Acne</span></label>
+        <label class="option-label"><input type="checkbox" name="symptoms" value="Back Pain"> <span>Back Pain</span></label>
+        <label class="option-label"><input type="checkbox" name="symptoms" value="Nausea"> <span>Nausea</span></label>
+        <label class="option-label"><input type="checkbox" name="symptoms" value="Other"> <span>Other</span></label>
+    </div>
+
+    <div id="pastCyclesSection">
+        <h3>Past Cycle History</h3>
+        <div class="history-info">
+            <p><strong>Help us help you!</strong> Sharing your past cycle data allows us to provide more personalized insights and better understand your unique patterns. The more history you share, the more accurate your experience will be. It's completely optional — add as many past cycles as you'd like.</p>
+        </div>
+        <div id="pastCyclesContainer"></div>
+        <button type="button" class="add-history-btn" id="addPastCycleBtn">+ Add Past Cycle</button>
+    </div>
+
+    <button type="submit" class="submit-btn">Submit Health Data</button>
+</form>
+
+<script>
+const symptomOptions = [
+    "Headache", "Cramps", "Fatigue", "Bloating", "Mood Swings", "Acne", "Back Pain", "Nausea", "Other"
+];
+
+function createPastCycleCard(index) {
+    const div = document.createElement('div');
+    div.className = 'question-card past-cycle-card';
+    div.dataset.index = index;
+
+    let symptomCheckboxes = symptomOptions.map(opt =>
+        `<label class="option-label"><input type="checkbox" name="past_symptoms_${index}" value="${opt}"> <span>${opt}</span></label>`
+    ).join('');
+
+    div.innerHTML = `
+        <p class="question-text">Past Cycle #${index + 1}</p>
+        <div class="question-card">
+            <p class="question-text">Cycle Start Date</p>
+            <input type="date" name="past_cycle_start_date">
+        </div>
+        <div class="question-card">
+            <p class="question-text">Cycle Length (days)</p>
+            <input type="number" name="past_cycle_length" min="1" max="60" placeholder="e.g., 28">
+        </div>
+        <div class="question-card">
+            <p class="question-text">Period Length (days)</p>
+            <input type="number" name="past_period_length" min="1" max="15" placeholder="e.g., 5">
+        </div>
+        <div class="question-card">
+            <p class="question-text">Symptoms (select all that apply)</p>
+            ${symptomCheckboxes}
+        </div>
+        <button type="button" class="remove-btn" onclick="this.closest('.past-cycle-card').remove()">Remove</button>
+    `;
+
+    return div;
+}
+
+let pastCycleCount = 0;
+
+document.getElementById('addPastCycleBtn').addEventListener('click', function() {
+    const container = document.getElementById('pastCyclesContainer');
+    const card = createPastCycleCard(pastCycleCount);
+    container.appendChild(card);
+    pastCycleCount++;
+});
+</script>
+{% endblock %}
