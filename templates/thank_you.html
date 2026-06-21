@@ -3,10 +3,45 @@
 {% block title %}Thank You{% endblock %}
 
 {% block content %}
-<div class="thank-you">
-    <h2>Thank You!</h2>
-    <p>Your response has been recorded successfully.</p>
-    <p>We appreciate your time and valuable input.</p>
-    <a href="/" class="submit-btn">Back to Home</a>
+<div class="thank-you-wrapper">
+    <div class="thank-you-card">
+        <div class="thank-you-icon">
+            <svg width="80" height="80" viewBox="0 0 80 80" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <circle cx="40" cy="40" r="40" fill="#e91e63" opacity="0.1"/>
+                <circle cx="40" cy="40" r="28" fill="url(#heartGrad)" />
+                <path d="M40 28 C40 28 30 20 26 24 C22 28 40 40 40 40 C40 40 58 28 54 24 C50 20 40 28 40 28Z" fill="#fff"/>
+                <defs>
+                    <radialGradient id="heartGrad" cx="50%" cy="50%" r="50%">
+                        <stop offset="0%" stop-color="#e91e63"/>
+                        <stop offset="100%" stop-color="#c2185b"/>
+                    </radialGradient>
+                </defs>
+            </svg>
+        </div>
+        <h1 class="thank-you-title">Thank You! 💖</h1>
+        <p class="thank-you-subtitle">Your response has been recorded successfully.</p>
+        <div class="thank-you-divider"></div>
+        <p class="thank-you-message">
+            Thank you for sharing your data with us. Your input is invaluable and plays a crucial role in helping us understand and address the real challenges you face every day.
+        </p>
+        <p class="thank-you-message">
+            With your contribution, we're one step closer to building a <strong>better platform and app</strong> that truly solves the problems that matter most to you.
+        </p>
+        <div class="thank-you-highlights">
+            <div class="highlight-item">
+                <span class="highlight-icon">📊</span>
+                <span>Real Data</span>
+            </div>
+            <div class="highlight-item">
+                <span class="highlight-icon">💡</span>
+                <span>Better Insights</span>
+            </div>
+            <div class="highlight-item">
+                <span class="highlight-icon">🚀</span>
+                <span>Smarter Solutions</span>
+            </div>
+        </div>
+        <a href="/" class="submit-btn">Back to Home</a>
+    </div>
 </div>
 {% endblock %}
