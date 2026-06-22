@@ -19,6 +19,7 @@ body {
     background: var(--bg);
     color: var(--text);
     line-height: 1.6;
+    overflow-wrap: break-word;
 }
 
 header {
@@ -45,6 +46,22 @@ header p {
     max-width: 1100px;
     margin: 0 auto;
     padding: 1rem;
+}
+
+.survey-header {
+    text-align: center;
+    margin-bottom: 1.5rem;
+}
+
+.survey-header h2 {
+    color: var(--primary-dark);
+    font-size: 1.5rem;
+    margin-bottom: 0.25rem;
+}
+
+.survey-header p {
+    color: var(--text-light);
+    font-size: 0.95rem;
 }
 
 .hero {
@@ -91,6 +108,7 @@ header p {
     text-align: center;
     box-shadow: var(--shadow);
     transition: transform 0.2s, box-shadow 0.2s;
+    overflow-wrap: break-word;
 }
 
 .feature-card:hover {
@@ -114,20 +132,6 @@ header p {
     font-size: 0.9rem;
 }
 
-.roles { margin: 1rem 0 3rem; }
-.roles h3 {
-    text-align: center;
-    margin-bottom: 2rem;
-    color: var(--primary-dark);
-    font-size: 1.5rem;
-}
-
-.role-cards {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-    gap: 1.25rem;
-}
-
 .role-card {
     background: var(--card-bg);
     padding: 2rem 1.5rem;
@@ -139,6 +143,7 @@ header p {
     transition: transform 0.25s, box-shadow 0.25s;
     position: relative;
     overflow: hidden;
+    overflow-wrap: break-word;
 }
 
 .role-card::before {
@@ -178,14 +183,6 @@ header p {
     box-shadow: 0 12px 32px rgba(233, 30, 99, 0.25);
 }
 
-.priority-section {
-    display: contents;
-}
-
-.priority-section .role-card {
-    grid-column: span 1;
-}
-
 .priority-badge {
     display: inline-block;
     background: var(--primary);
@@ -221,6 +218,7 @@ header p {
     border-radius: 12px;
     box-shadow: var(--shadow);
     margin-bottom: 1.5rem;
+    overflow-wrap: break-word;
 }
 
 .question-text {
@@ -280,6 +278,8 @@ input[type="date"] {
     cursor: pointer;
     text-decoration: none;
     transition: background 0.2s;
+    -webkit-tap-highlight-color: transparent;
+    touch-action: manipulation;
 }
 
 .submit-btn:hover { background: var(--primary-dark); }
@@ -297,6 +297,8 @@ input[type="date"] {
     cursor: pointer;
     transition: all 0.2s;
     margin-top: 1rem;
+    -webkit-tap-highlight-color: transparent;
+    touch-action: manipulation;
 }
 
 .add-history-btn:hover {
@@ -313,6 +315,7 @@ input[type="date"] {
     margin: 1rem 0;
     font-size: 0.95rem;
     color: #555;
+    overflow-wrap: break-word;
 }
 
 .history-info strong {
@@ -324,6 +327,12 @@ input[type="date"] {
     background: #fafafa;
 }
 
+.past-cycle-card .question-card {
+    margin-bottom: 0.75rem;
+    padding: 1rem;
+    box-shadow: none;
+}
+
 .remove-btn {
     background: #ff5252;
     color: #fff;
@@ -333,6 +342,8 @@ input[type="date"] {
     cursor: pointer;
     font-size: 0.9rem;
     margin-top: 0.5rem;
+    -webkit-tap-highlight-color: transparent;
+    touch-action: manipulation;
 }
 
 .remove-btn:hover {
@@ -469,11 +480,13 @@ footer {
     font-weight: 600;
     color: var(--primary-dark);
     flex-wrap: wrap;
+    overflow-wrap: break-word;
 }
 
 .answer-row {
     padding: 0.5rem 0;
     border-bottom: 1px solid #eee;
+    overflow-wrap: break-word;
 }
 
 .answer-row strong {
@@ -520,26 +533,26 @@ footer {
     }
 
     .features {
-        grid-template-columns: 1fr 1fr;
+        grid-template-columns: 1fr;
         gap: 0.75rem;
         margin: 1.5rem 0 2rem;
     }
 
     .feature-card {
-        padding: 1rem 0.75rem;
+        padding: 1.25rem 1rem;
     }
 
     .feature-icon {
-        font-size: 1.6rem;
+        font-size: 1.8rem;
         margin-bottom: 0.4rem;
     }
 
     .feature-card h4 {
-        font-size: 0.9rem;
+        font-size: 1rem;
     }
 
     .feature-card p {
-        font-size: 0.78rem;
+        font-size: 0.88rem;
     }
 
     .roles h3 {
@@ -548,30 +561,34 @@ footer {
     }
 
     .role-cards {
-        grid-template-columns: 1fr 1fr;
+        grid-template-columns: 1fr;
         gap: 0.75rem;
     }
 
     .role-card {
-        padding: 1.25rem 0.75rem;
+        padding: 1.25rem 1rem;
     }
 
     .role-icon {
-        font-size: 2rem;
+        font-size: 2.2rem;
         margin-bottom: 0.4rem;
     }
 
     .role-card h4 {
-        font-size: 1rem;
+        font-size: 1.05rem;
     }
 
     .role-card p {
-        font-size: 0.85rem;
+        font-size: 0.88rem;
     }
 
     .priority-badge {
         font-size: 0.7rem;
         padding: 0.2rem 0.6rem;
+    }
+
+    .survey-header h2 {
+        font-size: 1.3rem;
     }
 
     .question-card {
@@ -589,14 +606,16 @@ footer {
 
     .option-label {
         font-size: 0.95rem;
+        padding: 0.5rem 0;
     }
 
     textarea,
     input[type="text"],
     input[type="number"],
     input[type="date"] {
-        font-size: 0.95rem;
-        padding: 0.65rem 0.75rem;
+        font-size: 16px;
+        padding: 0.75rem;
+        min-height: 44px;
     }
 
     .submit-btn {
@@ -606,18 +625,24 @@ footer {
         padding: 0.85rem 1.5rem;
         font-size: 1rem;
         border-radius: 25px;
+        min-height: 44px;
     }
 
     .add-history-btn {
         width: 100%;
         justify-content: center;
         font-size: 0.95rem;
-        padding: 0.65rem 1rem;
+        padding: 0.75rem 1rem;
+        min-height: 44px;
     }
 
     .history-info {
         padding: 0.75rem 1rem;
         font-size: 0.85rem;
+    }
+
+    .past-cycle-card .question-card {
+        padding: 0.75rem;
     }
 
     .thank-you-wrapper {
@@ -680,6 +705,10 @@ footer {
         font-size: 0.9rem;
     }
 
+    .admin-header h2 {
+        font-size: 1.3rem;
+    }
+
     footer {
         font-size: 0.8rem;
         padding: 1.25rem 0;
@@ -688,15 +717,11 @@ footer {
 
 @media (max-width: 420px) {
     header h1 {
-        font-size: 1.25rem;
+        font-size: 1.2rem;
     }
 
     .features {
-        grid-template-columns: 1fr;
-    }
-
-    .role-cards {
-        grid-template-columns: 1fr;
+        gap: 0.5rem;
     }
 
     .role-card.featured {
@@ -709,5 +734,13 @@ footer {
 
     .role-card.featured:hover {
         transform: none;
+    }
+
+    .thank-you-title {
+        font-size: 1.4rem;
+    }
+
+    .highlight-item {
+        font-size: 0.78rem;
     }
 }
