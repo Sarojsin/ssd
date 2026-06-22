@@ -165,7 +165,6 @@ header p {
 .role-card.featured {
     border: 2px solid var(--primary);
     background: linear-gradient(180deg, #fff 0%, var(--primary-light) 100%);
-    transform: scale(1.03);
     box-shadow: 0 8px 28px rgba(233, 30, 99, 0.18);
 }
 
@@ -176,8 +175,15 @@ header p {
 }
 
 .role-card.featured:hover {
-    transform: scale(1.05) translateY(-6px);
     box-shadow: 0 12px 32px rgba(233, 30, 99, 0.25);
+}
+
+.priority-section {
+    display: contents;
+}
+
+.priority-section .role-card {
+    grid-column: span 1;
 }
 
 .priority-badge {
@@ -190,10 +196,6 @@ header p {
     border-radius: 20px;
     margin-top: 0.5rem;
     letter-spacing: 0.5px;
-}
-
-.priority-section {
-    grid-template-columns: 1.3fr 1fr 1fr 1fr 1fr;
 }
 
 .role-icon {
@@ -431,7 +433,12 @@ input[type="date"] {
     font-size: 1.8rem;
 }
 
-.thank-you .submit-btn {
+.thank-you-icon svg {
+    max-width: 100%;
+    height: auto;
+}
+
+.thank-you-card .submit-btn {
     margin-top: 1rem;
 }
 
@@ -476,4 +483,231 @@ footer {
 .answer-row p {
     margin-top: 0.25rem;
     color: #555;
+}
+
+@media (max-width: 768px) {
+    header {
+        padding: 1.5rem 0;
+    }
+
+    header h1 {
+        font-size: 1.5rem;
+    }
+
+    header p {
+        font-size: 0.95rem;
+    }
+
+    .container {
+        padding: 0.75rem;
+    }
+
+    .hero {
+        padding: 2rem 0.75rem 1.5rem;
+    }
+
+    .hero-badge {
+        font-size: 0.78rem;
+        padding: 0.3rem 0.85rem;
+    }
+
+    .hero h2 {
+        font-size: 1.5rem;
+    }
+
+    .hero p {
+        font-size: 0.95rem;
+    }
+
+    .features {
+        grid-template-columns: 1fr 1fr;
+        gap: 0.75rem;
+        margin: 1.5rem 0 2rem;
+    }
+
+    .feature-card {
+        padding: 1rem 0.75rem;
+    }
+
+    .feature-icon {
+        font-size: 1.6rem;
+        margin-bottom: 0.4rem;
+    }
+
+    .feature-card h4 {
+        font-size: 0.9rem;
+    }
+
+    .feature-card p {
+        font-size: 0.78rem;
+    }
+
+    .roles h3 {
+        font-size: 1.2rem;
+        margin-bottom: 1.25rem;
+    }
+
+    .role-cards {
+        grid-template-columns: 1fr 1fr;
+        gap: 0.75rem;
+    }
+
+    .role-card {
+        padding: 1.25rem 0.75rem;
+    }
+
+    .role-icon {
+        font-size: 2rem;
+        margin-bottom: 0.4rem;
+    }
+
+    .role-card h4 {
+        font-size: 1rem;
+    }
+
+    .role-card p {
+        font-size: 0.85rem;
+    }
+
+    .priority-badge {
+        font-size: 0.7rem;
+        padding: 0.2rem 0.6rem;
+    }
+
+    .question-card {
+        padding: 1.25rem 1rem;
+        margin-bottom: 1rem;
+    }
+
+    .question-text {
+        font-size: 1rem;
+    }
+
+    .question-description {
+        font-size: 0.85rem;
+    }
+
+    .option-label {
+        font-size: 0.95rem;
+    }
+
+    textarea,
+    input[type="text"],
+    input[type="number"],
+    input[type="date"] {
+        font-size: 0.95rem;
+        padding: 0.65rem 0.75rem;
+    }
+
+    .submit-btn {
+        display: block;
+        width: 100%;
+        text-align: center;
+        padding: 0.85rem 1.5rem;
+        font-size: 1rem;
+        border-radius: 25px;
+    }
+
+    .add-history-btn {
+        width: 100%;
+        justify-content: center;
+        font-size: 0.95rem;
+        padding: 0.65rem 1rem;
+    }
+
+    .history-info {
+        padding: 0.75rem 1rem;
+        font-size: 0.85rem;
+    }
+
+    .thank-you-wrapper {
+        padding: 1.5rem 0.75rem;
+        min-height: 50vh;
+    }
+
+    .thank-you-card {
+        padding: 2rem 1.5rem;
+    }
+
+    .thank-you-icon svg {
+        width: 56px;
+        height: 56px;
+    }
+
+    .thank-you-title {
+        font-size: 1.7rem;
+    }
+
+    .thank-you-subtitle {
+        font-size: 0.95rem;
+        margin-bottom: 1rem;
+    }
+
+    .thank-you-divider {
+        width: 40px;
+        height: 2px;
+        margin-bottom: 1.2rem;
+    }
+
+    .thank-you-message {
+        font-size: 0.9rem;
+        line-height: 1.6;
+    }
+
+    .thank-you-highlights {
+        gap: 1rem;
+        margin: 1.5rem 0;
+    }
+
+    .highlight-item {
+        font-size: 0.8rem;
+    }
+
+    .highlight-icon {
+        font-size: 1.4rem;
+    }
+
+    .response-card {
+        padding: 1rem;
+    }
+
+    .response-meta {
+        gap: 0.75rem;
+        font-size: 0.85rem;
+    }
+
+    .answer-row {
+        font-size: 0.9rem;
+    }
+
+    footer {
+        font-size: 0.8rem;
+        padding: 1.25rem 0;
+    }
+}
+
+@media (max-width: 420px) {
+    header h1 {
+        font-size: 1.25rem;
+    }
+
+    .features {
+        grid-template-columns: 1fr;
+    }
+
+    .role-cards {
+        grid-template-columns: 1fr;
+    }
+
+    .role-card.featured {
+        transform: none;
+    }
+
+    .role-card:hover {
+        transform: none;
+    }
+
+    .role-card.featured:hover {
+        transform: none;
+    }
 }
